@@ -58,6 +58,7 @@ func main() {
 		fmt.Print("-> ")
 		text, _ := reader.ReadString('\n')
 		text = strings.Replace(text, "\n", "", -1)
+		text = strings.Replace(text, "\x0d", "", -1)
 		interval, err := strconv.Atoi(text)
 		if err != nil {
 			fmt.Println("숫자만 입력 ")
