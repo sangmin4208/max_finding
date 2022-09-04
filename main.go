@@ -43,6 +43,8 @@ func main() {
 		fmt.Print("-> ")
 		text, _ := reader.ReadString('\n')
 		text = strings.Replace(text, "\n", "", -1)
+		text = strings.Replace(text, "\x0d", "", -1)
+		println(text)
 		testDate, err := time.Parse("2006.01.02 15:04", text)
 		if err != nil {
 			fmt.Println("잘못된 날짜형식 다시 입력 ")
@@ -51,7 +53,7 @@ func main() {
 		input.date = testDate
 		break
 	}
-	fmt.Println("시간 간격 입력 (숫자만)")
+	fmt.Println("시간 간격(분) 입력 (숫자만)")
 	for {
 		fmt.Print("-> ")
 		text, _ := reader.ReadString('\n')
