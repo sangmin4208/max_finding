@@ -100,7 +100,7 @@ func sortWriteRows(writeRows []WriteRow) {
 }
 func parseWriteRow(content Content, input Input) WriteRow {
 	maxRow := getMaxRow(content)
-	date := input.date.Add(time.Duration(time.Minute * time.Duration(input.interval*maxRow.index)))
+	date := input.date.Add(time.Duration(time.Minute * time.Duration(input.interval*(maxRow.index-1))))
 	return WriteRow{
 		regione:  content.regione,
 		maxValue: fmt.Sprintf("%v", maxRow.value),
