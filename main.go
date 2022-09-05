@@ -100,7 +100,7 @@ func sortWriteRows(writeRows []WriteRow) {
 }
 func parseWriteRow(content Content, input Input) WriteRow {
 	maxRow := getMaxRow(content)
-	date := input.date.Add(time.Duration(time.Minute * time.Duration(input.interval*(maxRow.index-1))))
+	date := input.date.Add(time.Duration(time.Minute * time.Duration(input.interval*(maxRow.index))))
 	return WriteRow{
 		regione:  content.regione,
 		maxValue: fmt.Sprintf("%v", maxRow.value),
@@ -132,10 +132,11 @@ func parseFiles(file fs.FileInfo) Content {
 	readFile, err := os.Open(
 		fmt.Sprintf("%v/%v", INPUT_DIR, file.Name()),
 	)
-	defer readFile.Close()
 	if err != nil {
 		panic("파일 읽기 실패")
 	}
+	defer readFile.Close()
+
 	fileScanner := bufio.NewScanner(readFile)
 	fileScanner.Split(bufio.ScanLines)
 	rows := []Row{}
