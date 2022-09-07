@@ -35,12 +35,11 @@ type UserInput struct {
 
 func (c *Content) toOutputLine(t time.Time) *OutputLine {
 	mv := c.getMaxValue()
-	date := t.Add(time.Duration(time.Minute * time.Duration(10*(mv.index+1))))
 	return &OutputLine{
 		regione:       c.regione,
 		maxValue:      fmt.Sprintf("%v", mv.value),
-		date:          date,
-		formattedDate: date.Format("2006 01 02 15 04"),
+		date:          mv.date,
+		formattedDate: mv.date.Format("2006 01 02 15 04"),
 	}
 }
 
