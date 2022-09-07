@@ -12,7 +12,7 @@ func main() {
 	var ols OutputLines
 	for _, content := range contents {
 		content.lines = content.filtered(input)
-		ols.lines = append(ols.lines, content.toOutputLine(input.baseDate))
+		ols.lines = append(ols.lines, content.toOutputLine())
 	}
 	ols.sort()
 	writeFile("output.txt", ols.lines)

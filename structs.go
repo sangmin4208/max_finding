@@ -33,7 +33,7 @@ type UserInput struct {
 	endDate   time.Time
 }
 
-func (c *Content) toOutputLine(t time.Time) *OutputLine {
+func (c *Content) toOutputLine() *OutputLine {
 	mv := c.getMaxValue()
 	return &OutputLine{
 		regione:       c.regione,
@@ -54,7 +54,6 @@ func (c *Content) getMaxValue() *InputLine {
 func (c *Content) filtered(userInput UserInput) []*InputLine {
 	lines := []*InputLine{}
 	for _, line := range c.lines {
-		// if(line.date )
 		if line.date.Equal(userInput.startDate) ||
 			line.date.Equal(userInput.endDate) ||
 			(line.date.After(userInput.startDate) && line.date.Before(userInput.endDate)) {
